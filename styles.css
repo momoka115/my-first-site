@@ -1,14 +1,14 @@
 :root {
   color-scheme: light;
-  --sky-lilac: #f0dcff;
-  --grass-mint: #c8f2d6;
-  --petal-pink: #ffd4ef;
-  --sunset-peach: #ffb5a7;
-  --cloud-white: #fffdf7;
-  --sticker-blue: #b8e7ff;
-  --text-deep: #2a1524;
-  --accent: #ff7db4;
-  --shadow-tone: rgba(36, 15, 30, 0.35);
+  --tea-cream: #fff7ef;
+  --moss-mint: #cce8d9;
+  --berry-rose: #ffc6d8;
+  --peach-syrup: #ffd5a6;
+  --sunrise-gold: #ffe3a2;
+  --leaf-olive: #7da67a;
+  --text-deep: #2b1323;
+  --accent: #f0659b;
+  --shadow-tone: rgba(34, 10, 25, 0.35);
 }
 
 * {
@@ -19,7 +19,7 @@ body {
   font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
   margin: 0;
   min-height: 100vh;
-  background: radial-gradient(circle at 30% -20%, #fff2ff 0%, var(--sky-lilac) 38%, #f7cfe8 65%, #ffd9c6 85%);
+  background: radial-gradient(circle at 30% -20%, #fff9f5 0%, #ffe6d1 40%, #ffd8c3 70%, #ffeccd 90%);
   color: var(--text-deep);
   display: flex;
   align-items: center;
@@ -38,7 +38,7 @@ body::before {
 }
 
 main.card {
-  background: linear-gradient(180deg, var(--cloud-white), var(--petal-pink));
+  background: linear-gradient(180deg, var(--tea-cream), #ffe8d1);
   border-radius: 2.25rem;
   padding: clamp(2.5rem, 4vw, 3.5rem);
   max-width: 530px;
@@ -93,10 +93,10 @@ main.card {
 }
 
 .scene {
-  bottom: 1rem;
+  bottom: 0.8rem;
   left: 1rem;
-  width: 120px;
-  height: 80px;
+  width: 140px;
+  height: 90px;
 }
 
 .leaf {
@@ -179,7 +179,7 @@ p {
   margin-bottom: 0.75rem;
 }
 
-.mini-list {
+.tea-list {
   list-style: none;
   padding: 0;
   margin: 0 0 1rem;
@@ -187,12 +187,25 @@ p {
   gap: 0.5rem;
 }
 
-.mini-list li {
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px dashed rgba(255, 125, 180, 0.6);
-  border-radius: 1.25rem;
-  padding: 0.6rem 1rem;
-  font-size: 0.95rem;
+.tea-list li {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 1.5rem;
+  padding: 0.75rem 1.25rem;
+  text-align: left;
+  border: 1px solid rgba(240, 101, 155, 0.25);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.tea-list strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 1rem;
+}
+
+.tea-list p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(43, 18, 30, 0.8);
 }
 
 .button-row {
