@@ -51,28 +51,27 @@
     </div>
   </main>
   <script>
-    const TEACUP_EMOJI = "🍵";
+    const dropZone = document.querySelector(".teacup-snow");
 
     function createTeacup() {
       const span = document.createElement("span");
-      span.textContent = TEACUP_EMOJI;
       const size = Math.random() * 1.2 + 0.8;
-      span.style.fontSize = `${size}rem`;
+      span.style.setProperty("--cup-size", `${size}rem`);
       span.style.left = `${Math.random() * 100}%`;
       span.style.animationDuration = `${Math.random() * 4 + 6}s`;
       span.style.animationDelay = `${Math.random() * 4}s`;
       span.addEventListener("animationend", () => {
         span.remove();
       });
-      document.querySelector(".teacup-snow").appendChild(span);
+      dropZone.appendChild(span);
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-      const initialCount = 10;
+      const initialCount = 12;
       for (let i = 0; i < initialCount; i += 1) {
         createTeacup();
       }
-      setInterval(createTeacup, 1200);
+      setInterval(createTeacup, 1100);
     });
   </script>
 </body>
