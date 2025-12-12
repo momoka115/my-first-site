@@ -128,9 +128,10 @@ main.card {
   width: var(--cup-size, 1.5rem);
   height: calc(var(--cup-size, 1.5rem) * 1.25);
   border-radius: 45% 45% 35% 35%;
-  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.6));
-  border: 1px solid rgba(255,255,255,0.8);
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(180deg, #fffdf4, #ffe8d1);
+  border: 1px solid rgba(168, 104, 72, 0.4);
+  box-shadow: 0 12px 18px rgba(0, 0, 0, 0.18);
+  position: relative;
 }
 
 .teacup-snow span::before {
@@ -141,8 +142,9 @@ main.card {
   bottom: 12%;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(255, 196, 181, 0.9);
+  background: linear-gradient(180deg, rgba(255, 196, 181, 0.95), rgba(255, 236, 210, 0.9));
   border-radius: 50% 50% 40% 40%;
+  border: 1px solid rgba(193, 136, 89, 0.2);
 }
 
 .teacup-snow span::after {
@@ -152,9 +154,35 @@ main.card {
   height: 60%;
   right: -18%;
   top: 20%;
-  border: 2px solid rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(255, 204, 171, 0.9);
   border-left: none;
   border-radius: 50% 50% 60% 60%;
+  background: #ffe8d1;
+}
+
+.teacup-snow span .teacup-steam {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  width: 12px;
+  height: 18px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+  border-radius: 999px;
+  opacity: 0.6;
+  filter: blur(1px);
+  animation: steam-rise 3s linear infinite;
+}
+
+@keyframes steam-rise {
+  0% {
+    transform: translate(-50%, 0) scaleY(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-50%, -30px) scaleY(1.3);
+    opacity: 0;
+  }
 }
 
 .card-inner {

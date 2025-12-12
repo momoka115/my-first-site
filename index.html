@@ -106,6 +106,9 @@
       span.addEventListener("animationend", () => {
         span.remove();
       });
+      const steam = document.createElement("span");
+      steam.className = "teacup-steam";
+      span.appendChild(steam);
       dropZone.appendChild(span);
     }
 
