@@ -26,6 +26,7 @@
     <button class="skip-intro" aria-label="Skip intro video">スキップ</button>
   </div>
   <div class="teacup-snow" aria-hidden="true"></div>
+  <div class="petal-zone" aria-hidden="true"></div>
   <main class="card">
     <div class="sprite-cluster" aria-hidden="true">
       <span class="dot dot-one"></span>
@@ -84,6 +85,20 @@
         </div>
       </li>
         </ul>
+      </section>
+      <section class="mood-board" role="presentation">
+        <div class="mood-note">
+          <strong>リラックス・モード</strong>
+          <p class="mood-text">お茶の香りで気持ちをそっと整えて。</p>
+        </div>
+        <div class="mood-note">
+          <strong>ナイト・リチュアル</strong>
+          <p class="mood-text">ほのかな光の下で、今日をそっとねぎらう時間。</p>
+        </div>
+        <div class="mood-note dynamic-note">
+          <strong>ティー・メッセージ</strong>
+          <p class="mood-text">心をこめて...</p>
+        </div>
       </section>
     </div>
   </main>
@@ -150,7 +165,49 @@
       body.classList.add("intro-playing");
       runTeaRain(1100);
       introVideo?.play().catch(() => {});
+      startPetalDrift();
     });
+
+    const petalZone = document.querySelector(".petal-zone");
+    let petalInterval;
+
+    function createPetal() {
+      const span = document.createElement("span");
+      span.style.left = `${Math.random() * 100}%`;
+      span.style.animationDuration = `${Math.random() * 5 + 6}s`;
+      span.style.animationDelay = `${Math.random() * 3}s`;
+      span.style.opacity = `${Math.random() * 0.5 + 0.3}`;
+      petalZone?.appendChild(span);
+      span.addEventListener("animationend", () => {
+        span.remove();
+      });
+    }
+
+    function startPetalDrift() {
+      if (!petalZone || petalInterval) {
+        return;
+      }
+      createPetal();
+      petalInterval = setInterval(createPetal, 900);
+    }
+
+    const dynamicText = document.querySelector(".dynamic-note .mood-text");
+    const moodMessages = [
+      "こっそり深呼吸して。",
+      "ちょっぴり甘いお茶をひとくち。",
+      "ふわりとした雲に包まれる気分。",
+      "やさしいリズムでゆったりと。"
+    ];
+    let moodIndex = 0;
+
+    function updateMoodMessage() {
+      if (!dynamicText) return;
+      dynamicText.textContent = moodMessages[moodIndex];
+      moodIndex = (moodIndex + 1) % moodMessages.length;
+    }
+
+    setInterval(updateMoodMessage, 3200);
+    updateMoodMessage();
   </script>
 </body>
 </html>

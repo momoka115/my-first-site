@@ -23,6 +23,7 @@ body {
   margin: 0;
   min-height: 100vh;
   background: linear-gradient(140deg, #ffeef6 15%, #fffaf0 40%, var(--powder-blue) 70%);
+  animation: gradientShift 16s ease infinite;
   color: var(--text-deep);
   display: flex;
   align-items: center;
@@ -70,6 +71,7 @@ body.intro-playing {
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 10px 20px rgba(255, 255, 255, 0.5);
+  animation: floatPulse 4s ease-in-out infinite;
 }
 
 .intro-video.intro-hidden {
@@ -104,6 +106,36 @@ body::after {
     radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.6) 0, transparent 45%);
   opacity: 0.6;
   z-index: -3;
+}
+
+.petal-zone {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.petal-zone span {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle, rgba(255, 182, 205, 0.9), rgba(255, 182, 205, 0));
+  opacity: 0.7;
+  border-radius: 50%;
+  animation: petalFall linear infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
 }
 
 main.card {
@@ -195,6 +227,20 @@ main.card::after {
   background: #ffe8d1;
 }
 
+@keyframes petalFall {
+  0% {
+    transform: translateY(-10vh) translateX(0) scale(0.7);
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(110vh) translateX(20px) scale(0.9);
+    opacity: 0;
+  }
+}
+
 .teacup-snow span .teacup-steam {
   position: absolute;
   top: -25px;
@@ -255,6 +301,66 @@ main.card::after {
   color: #6a3a4e;
 }
 
+.mood-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.mood-note {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 1rem;
+  padding: 1rem;
+  border: 1px dashed rgba(255, 125, 180, 0.4);
+  box-shadow: 0 10px 35px rgba(166, 79, 120, 0.1);
+  transition: transform 0.35s ease;
+}
+
+.mood-note strong {
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #913d5d;
+}
+
+.mood-text {
+  font-size: 0.9rem;
+  margin: 0;
+  color: rgba(43, 18, 30, 0.75);
+}
+
+.mood-note:hover {
+  transform: translateY(-6px);
+}
+
+.dynamic-note {
+  position: relative;
+  overflow: hidden;
+}
+
+.dynamic-note::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 182, 205, 0.3);
+  pointer-events: none;
+  animation: glowPulse 3s linear infinite;
+}
+
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 0 rgba(255, 182, 205, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 182, 205, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(255, 182, 205, 0.2);
+  }
+}
+
 @keyframes teacup-fall {
   0% {
     transform: translateY(-10%) rotate(0deg);
@@ -266,6 +372,21 @@ main.card::after {
   100% {
     transform: translateY(120vh) rotate(360deg);
     opacity: 0;
+  }
+}
+
+@keyframes floatPulse {
+  0% {
+    transform: translateY(0);
+    box-shadow: 0 12px 25px rgba(255, 255, 255, 0.35);
+  }
+  50% {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 35px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    transform: translateY(0);
+    box-shadow: 0 12px 25px rgba(255, 255, 255, 0.35);
   }
 }
 
@@ -494,6 +615,7 @@ p {
   padding: 0.85rem 1.8rem;
   box-shadow: 0 12px 25px rgba(255, 255, 255, 0.35);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: floatPulse 6s ease-in-out infinite;
 }
 
 .cta:hover,
