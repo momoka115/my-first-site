@@ -95,6 +95,7 @@
     const introVideo = document.getElementById("introVideo");
     const skipIntro = document.querySelector(".skip-intro");
     const body = document.body;
+    let teaInterval;
 
     function createTeacup() {
       const span = document.createElement("span");
@@ -110,6 +111,17 @@
       steam.className = "teacup-steam";
       span.appendChild(steam);
       dropZone.appendChild(span);
+    }
+
+    function startTeaRain() {
+      if (teaInterval || !dropZone) {
+        return;
+      }
+      const initialCount = 12;
+      for (let i = 0; i < initialCount; i += 1) {
+        createTeacup();
+      }
+      teaInterval = setInterval(createTeacup, 1100);
     }
 
     function hideIntroVideo() {
@@ -134,13 +146,11 @@
 
     introVideo?.addEventListener("ended", hideIntroVideo);
 
+    startTeaRain();
+
     document.addEventListener("DOMContentLoaded", () => {
       body.classList.add("intro-playing");
-      const initialCount = 12;
-      for (let i = 0; i < initialCount; i += 1) {
-        createTeacup();
-      }
-      setInterval(createTeacup, 1100);
+      startTeaRain();
       introVideo?.play().catch(() => {});
     });
   </script>
