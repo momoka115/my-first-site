@@ -7,6 +7,26 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="intro-video" aria-label="Introduction video">
+    <video
+      id="introVideo"
+      autoplay
+      muted
+      playsinline
+      preload="metadata"
+      poster="https://cdn.pixabay.com/photo/2020/10/07/16/15/tea-5639775_640.jpg"
+    >
+      <source
+        src="https://cdn.pixabay.com/download/video/2022/03/15/21-15-39-961_640x360.mp4?filename=tea-cup-pour-71457.mp4"
+        type="video/mp4"
+      />
+      Your browser does not support the video tag.
+    </video>
+    <div class="video-overlay">
+      <p>ほっこりお茶の時間へ</p>
+      <button class="skip-intro" aria-label="Skip intro video">スキップ</button>
+    </div>
+  </div>
   <div class="teacup-snow" aria-hidden="true"></div>
   <main class="card">
     <div class="sprite-cluster" aria-hidden="true">
@@ -71,6 +91,10 @@
   </main>
   <script>
     const dropZone = document.querySelector(".teacup-snow");
+    const videoOverlay = document.querySelector(".intro-video");
+    const introVideo = document.getElementById("introVideo");
+    const skipIntro = document.querySelector(".skip-intro");
+    const body = document.body;
 
     function createTeacup() {
       const span = document.createElement("span");
@@ -85,12 +109,36 @@
       dropZone.appendChild(span);
     }
 
+    function hideIntroVideo() {
+      if (!videoOverlay || videoOverlay.classList.contains("intro-hidden")) {
+        return;
+      }
+      videoOverlay.classList.add("intro-hidden");
+      body.classList.remove("intro-playing");
+      videoOverlay.addEventListener(
+        "transitionend",
+        () => {
+          videoOverlay.remove();
+        },
+        { once: true }
+      );
+    }
+
+    skipIntro?.addEventListener("click", () => {
+      introVideo?.pause();
+      hideIntroVideo();
+    });
+
+    introVideo?.addEventListener("ended", hideIntroVideo);
+
     document.addEventListener("DOMContentLoaded", () => {
+      body.classList.add("intro-playing");
       const initialCount = 12;
       for (let i = 0; i < initialCount; i += 1) {
         createTeacup();
       }
       setInterval(createTeacup, 1100);
+      introVideo?.play().catch(() => {});
     });
   </script>
 </body>
