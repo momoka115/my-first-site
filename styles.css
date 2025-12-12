@@ -301,6 +301,55 @@ p {
   text-align: left;
   border: 1px solid rgba(240, 101, 155, 0.25);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.6rem;
+  align-items: flex-start;
+}
+
+.tea-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 26px;
+  border-radius: 50% 50% 45% 45%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 -1px 4px rgba(255, 255, 255, 0.6);
+  position: relative;
+  margin: 0;
+}
+
+.tea-icon::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 2px;
+  height: 18px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9));
+  filter: drop-shadow(0 2px 3px rgba(255, 255, 255, 0.5));
+}
+
+.tea-icon::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  border-left: none;
+  border-bottom: none;
+  right: -12px;
+  bottom: 4px;
+  border-radius: 0 0 0 0;
+}
+
+.tea-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .tea-list strong {
