@@ -113,6 +113,9 @@
       dropZone.appendChild(span);
     }
 
+    const NORMAL_INTERVAL = 1100;
+    const INTENSE_INTERVAL = 600;
+
     function startTeaRain() {
       if (teaInterval || !dropZone) {
         return;
@@ -121,7 +124,20 @@
       for (let i = 0; i < initialCount; i += 1) {
         createTeacup();
       }
-      teaInterval = setInterval(createTeacup, 1100);
+      teaInterval = setInterval(createTeacup, NORMAL_INTERVAL);
+    }
+
+    function intensifyTeaRain() {
+      if (!dropZone) {
+        return;
+      }
+      clearInterval(teaInterval);
+      teaInterval = null;
+      const burstCount = 16;
+      for (let i = 0; i < burstCount; i += 1) {
+        createTeacup();
+      }
+      teaInterval = setInterval(createTeacup, INTENSE_INTERVAL);
     }
 
     function hideIntroVideo() {
@@ -142,6 +158,7 @@
     skipIntro?.addEventListener("click", () => {
       introVideo?.pause();
       hideIntroVideo();
+      intensifyTeaRain();
     });
 
     introVideo?.addEventListener("ended", hideIntroVideo);
